@@ -70,11 +70,6 @@
       h3 + .Quote + .Quote + .Quote + .Quote + .Quote + .Quote {
         text-align: right;
       }
-      .Caption {
-        display: none;
-      }
-      .ImageEmbed {
-      }
     }
   }
 </style>

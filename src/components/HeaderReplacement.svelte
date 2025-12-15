@@ -19,7 +19,7 @@
 
 <div class="measure" bind:clientWidth={width}></div>
 
-<div class="ibvt-header-replacement">
+<div class="ibvt-header-replacement ibvt-header-replacement--{fullwidth ? 'fullwidth' : 'content'}">
   {#if width}
     <SVGLoader src={svgUrl} ...wh />
   {/if}
@@ -76,5 +76,16 @@
   }
   .ibvt-header-replacement {
     margin: 0 16px 0;
+  }
+
+  .ibvt-header-replacement--content :global(img) {
+    width: 100%;
+    max-width: 980px !important;
+    display: block;
+    margin: 0 auto;
+
+    @media (min-width: 1800px) {
+      max-width: 1200px !important;
+    }
   }
 </style>

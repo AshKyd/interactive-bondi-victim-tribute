@@ -56,9 +56,7 @@ whenOdysseyLoaded.then(() => {
   if (headerTargets) {
     headerTargets.forEach(headerTarget => {
       const props = parse(getMountValue(headerTarget));
-      if (props.fullwidth) {
-        headerTarget.classList.add('u-full');
-      }
+      headerTarget.classList.add('u-full');
       headerTarget.classList.add('ibvt-reset-mount');
       mount(HeaderReplacement, {
         target: headerTarget,

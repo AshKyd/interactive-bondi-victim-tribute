@@ -15,7 +15,6 @@
   let columns = $state(false);
   let hasRun = $state(false);
   $effect(() => {
-    console.log({ masonryProps });
     if (hasRun) {
       return;
     }

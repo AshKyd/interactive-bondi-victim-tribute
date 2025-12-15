@@ -73,7 +73,9 @@
     display: flex;
     flex-direction: column;
     gap: 50px;
-    width: calc(50% - 25px);
+    @media (min-width: 620px) {
+      width: calc(50% - 25px);
+    }
   }
   :global {
     .ibvt-reset-mount:not(.u-full) {

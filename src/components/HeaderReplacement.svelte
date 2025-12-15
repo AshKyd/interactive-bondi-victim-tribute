@@ -34,9 +34,6 @@
     height: 0;
   }
   :global {
-    #webpack-dev-server-client-overlay {
-      display: none;
-    }
     .Header {
       margin: 0 !important;
     }

@@ -27,7 +27,7 @@
     const col2 = [];
     let i = 0;
     blocks.forEach((block, i) => {
-      if (i % 2 !== 0 || col1.length > (masonryProps?.left || 100)) {
+      if (i % 2 !== 0 || col1.length >= (masonryProps?.left || 100)) {
         col2.push(block);
       } else {
         col1.push(block);

@@ -1,29 +1,40 @@
 <script>
   import SVGLoader from './SVGLoader.svelte';
 
-  let { mobileratio, desktopratio, version } = $props();
+  let { fullwidth=false, mobileratio, desktopratio, version } = $props();
 
   function parseAspectRatio(ratio = '16x9') {
     const [width, height] = ratio.split('x');
-    return `${width} / ${height}`;
+    return {width, height}
   }
 
   let width = $state(0);
   const isMobile = $derived.by(() => width < 700);
-  const ratio = $derived.by(() => parseAspectRatio(isMobile ? mobileratio : desktopratio));
+  const wh = $derived.by(() => parseAspectRatio(isMobile ? mobileratio : desktopratio));
+  $effect(() => console.log({wh}))
   let svgUrl = $derived.by(
     () =>
-      `https://www.abc.net.au/res/sites/news-projects/interactive-bondi-victim-tribute/assets/header-${isMobile ? 'desktop' : 'mobile'}.svg?v=${version || '0'}`
+      `https://www.abc.net.au/res/sites/news-projects/interactive-bondi-victim-tribute/assets/header-${isMobile ? 'mobile' : 'desktop'}-${fullwidth ? 'full' : 'content'}.svg?v=${version || '0'}`
   );
 </script>
 
-<div class="ibvt-header-replacement" bind:clientWidth={width} style:aspect-ratio={ratio}>
+<div class="measure" bind:clientWidth={width}>
+</div>
+
+<div class="ibvt-header-replacement" >
   {#if width}
-    <SVGLoader src={svgUrl} />
+    <SVGLoader src={svgUrl} ...wh />
   {/if}
 </div>
 
 <style lang="scss">
+  .measure{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:0;
+  }
   :global {
     .Header{
       margin:0 !important;
@@ -44,5 +55,8 @@
         display:none;
       }
     }
+  }
+  .ibvt-header-replacement{
+    margin:0 16px;
   }
   </style>

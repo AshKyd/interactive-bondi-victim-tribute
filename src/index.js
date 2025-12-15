@@ -24,30 +24,35 @@ whenOdysseyLoaded.then(() => {
   // PERSON BLOCKS
   const blocks = selectMounts('personblock');
   for (let i = 0; i < blocks.length; i += 2) {
-    const [blockStart] = blocks.slice(i, i + 2);
+    const [blockStart,blockEnd] = blocks.slice(i, i + 2);
+    blockStart.classList.add('ibvt-reset-mount')
+    blockEnd.classList.add('ibvt-reset-mount')
     const els = getEls(blockStart);
-    console.log(els);
 
     mount(Block, {
       target: blockStart,
       props: {
         id: i,
-        HTMLElements: els
+        HTMLElements: els,
       }
     });
   }
 
   // HEADER REPLACEMENT
-  const [headerTarget] = selectMounts('graphicheader');
+  const headerTargets = selectMounts('graphicheader');
 
-  if (headerTarget) {
-    const props = parse(getMountValue(headerTarget));
-    console.log({ props });
-    headerTarget.classList.add('u-full');
-    mount(HeaderReplacement, {
-      target: headerTarget,
-      props: props
-    });
+  if (headerTargets) {
+    headerTargets.forEach(headerTarget => {
+      const props = parse(getMountValue(headerTarget));
+      if(props.fullwidth){
+        headerTarget.classList.add('u-full');
+      }
+      headerTarget.classList.add('ibvt-reset-mount')
+      mount(HeaderReplacement, {
+        target: headerTarget,
+        props: props
+      });
+    })
   }
 });
 

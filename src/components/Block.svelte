@@ -13,6 +13,12 @@
 <div class="ibvt-block" bind:this={rootNode}></div>
 
 <style lang="scss">
+  :global{
+      .ibvt-reset-mount{
+        margin-top:0 !important;
+        margin-bottom:0 !important;
+      }
+  }
   .ibvt-block {
     margin: 0 16px;
     &::after {
@@ -27,8 +33,13 @@
         margin: 0;
         margin-bottom: 16px;
       }
+      .ImageEmbed.u-pull{
+        width:100%;
+      }
       img {
         border-radius: 12px;
+        width:100%;
+        height:auto;
       }
       h3 {
         color: #000;

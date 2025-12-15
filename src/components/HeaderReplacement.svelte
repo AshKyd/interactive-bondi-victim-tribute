@@ -9,7 +9,7 @@
   }
 
   let width = $state(0);
-  const isMobile = $derived.by(() => width < 700);
+  const isMobile = $derived.by(() => width < 620);
   const wh = $derived.by(() => parseAspectRatio(isMobile ? mobileratio : desktopratio));
   $effect(() => console.log({ wh }));
   let svgUrl = $derived.by(
@@ -35,11 +35,14 @@
     height: 0;
   }
   :global {
+    #webpack-dev-server-client-overlay {
+      display: none;
+    }
     .Header {
       margin: 0 !important;
     }
     .Header-content {
-      margin: 12px 0 42px;
+      margin: 12px auto 42px;
       h1 {
         clip: rect(1px, 1px, 1px, 1px);
         clip-path: inset(50%);

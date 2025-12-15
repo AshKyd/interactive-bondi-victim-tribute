@@ -15,7 +15,7 @@
 <style lang="scss">
   .ibvt-block {
     margin: 0 16px;
-    @media (max-width: 699px) {
+    @media (max-width: 619px) {
       &--0::before {
         content: '';
         display: block;

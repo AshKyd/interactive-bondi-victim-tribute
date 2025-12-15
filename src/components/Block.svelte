@@ -7,11 +7,9 @@
     if (rootNode) {
       Array.from(HTMLElements).forEach(el => {
         const className = el.getAttribute('class');
-        console.log({ className });
         if (className === 'Quote') {
           const bq = document.createElement('blockquote');
           const [quote, ...attribution] = el.textContent.trim().split(' - ');
-          console.log(bq.textContent, quote, attribution);
           bq.textContent = quote;
           if (attribution.length) {
             const attr = document.createElement('cite');

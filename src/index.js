@@ -40,7 +40,6 @@ whenOdysseyLoaded.then(() => {
       HTMLElements: els
     });
   }
-  console.log({ parsedBlocks });
   if (parsedBlocks.length) {
     mount(Blocks, {
       target: blocks[0],

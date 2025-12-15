@@ -11,7 +11,6 @@
   let width = $state(0);
   const isMobile = $derived.by(() => width < 620);
   const wh = $derived.by(() => parseAspectRatio(isMobile ? mobileratio : desktopratio));
-  $effect(() => console.log({ wh }));
   let svgUrl = $derived.by(
     () =>
       `https://www.abc.net.au/res/sites/news-projects/interactive-bondi-victim-tribute/assets/header-${isMobile ? 'mobile' : 'desktop'}-${fullwidth ? 'full' : 'content'}.svg?v=${version || '0'}`

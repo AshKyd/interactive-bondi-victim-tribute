@@ -6,8 +6,6 @@
   let width = $state(0);
   const gap = 50;
   let columnWidth = $derived.by(() => (width < 620 ? width : width / 2 - gap / 2));
-
-  $effect(() => console.log('bondi', { width, columnWidth }));
 </script>
 
 <div class="blocks" bind:clientWidth={width}>

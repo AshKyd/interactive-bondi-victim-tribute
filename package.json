@@ -1,28 +1,28 @@
 {
-  "name": "interactive-bondi-victim-tribute",
-  "version": "1.0.23",
-  "description": "The 15 victims of Bondi terror attack are remembered with love",
-  "license": "MIT",
-  "private": true,
-  "contributors": [
-    "Ash Kyd <kyd.ashley@abc.net.au>"
-  ],
-  "aunty": {
-    "type": "svelte"
-  },
-  "scripts": {
-    "start": "aunty serve",
-    "dev": "aunty serve",
-    "test": "aunty test"
-  },
-  "devDependencies": {
-    "@abcnews/aunty": "^16.0.1",
-    "@testing-library/svelte": "^5.2.9"
-  },
-  "dependencies": {
-    "@abcnews/alternating-case-to-object": "^3.2.0",
-    "@abcnews/env-utils": "^6.0.0",
-    "@abcnews/mount-utils": "^3.0.0",
-    "svelte": "^5.46.0"
-  }
+	"name": "interactive-bondi-victim-tribute",
+	"version": "1.0.24",
+	"description": "The 15 victims of Bondi terror attack are remembered with love",
+	"license": "MIT",
+	"private": true,
+	"contributors": [
+		"Ash Kyd <kyd.ashley@abc.net.au>"
+	],
+	"aunty": {
+		"type": "svelte"
+	},
+	"scripts": {
+		"start": "aunty serve",
+		"dev": "aunty serve",
+		"test": "aunty test"
+	},
+	"devDependencies": {
+		"@abcnews/aunty": "^16.0.1",
+		"@testing-library/svelte": "^5.2.9"
+	},
+	"dependencies": {
+		"@abcnews/alternating-case-to-object": "^3.2.0",
+		"@abcnews/env-utils": "^6.0.0",
+		"@abcnews/mount-utils": "^3.0.0",
+		"svelte": "^5.46.0"
+	}
 }

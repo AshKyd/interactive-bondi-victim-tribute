@@ -13,7 +13,7 @@
           bq.textContent = quote;
           if (attribution.length) {
             const attr = document.createElement('cite');
-            attr.textContent = '- ' + attribution.join(' - ');
+            attr.textContent = attribution.join(' - ');
             bq.appendChild(attr);
           }
           rootNode.appendChild(bq);

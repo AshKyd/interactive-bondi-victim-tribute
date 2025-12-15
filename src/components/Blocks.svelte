@@ -20,10 +20,13 @@
 
 <style lang="scss">
   :global {
-    .ibvt-reset-mount {
+    .ibvt-reset-mount:not(.u-full) {
       margin-top: 0 !important;
       margin-bottom: 0 !important;
       width: 100% !important;
     }
+  }
+  .blocks {
+    margin-bottom: 50px;
   }
 </style>

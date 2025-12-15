@@ -30,6 +30,13 @@
 <style lang="scss">
   .ibvt-block {
     margin: 0 16px;
+    a:not(.bespoke) {
+      color: #3f7ab8;
+      &:hover,
+      &:focus-visible {
+        text-decoration: underline;
+      }
+    }
     @media (max-width: 619px) {
       &--0::before {
         content: '';
@@ -39,10 +46,11 @@
         border-bottom: 1px solid #979797;
       }
     }
+
     &::after {
       content: '';
       display: block;
-      margin: 32px auto 64px;
+      margin: 32px auto 0;
       width: 172px;
       border-bottom: 1px solid #979797;
     }

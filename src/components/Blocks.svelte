@@ -33,10 +33,10 @@
       float: none;
       font-size: inherit;
       font-weight: inherit;
-      padding: none;
       line-height: inherit;
       font-family: inherit;
       margin: 0;
+      padding: 0;
     }
   }
   .blocks {

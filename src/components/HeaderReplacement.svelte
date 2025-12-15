@@ -69,6 +69,9 @@
           gap: 10px;
         }
       }
+      [data-component='AuthorTag'] {
+        display: none;
+      }
     }
   }
   .ibvt-header-replacement {

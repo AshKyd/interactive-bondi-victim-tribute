@@ -15,7 +15,9 @@ function getEls(firstEl) {
       hasMoreContent = false;
     } else {
       els.push(el);
-      el = el.nextElementSibling;
+      const nextEl = el.nextElementSibling;
+      el.parentNode.removeChild(el);
+      el = nextEl;
     }
   }
   return els;
@@ -29,13 +31,16 @@ whenOdysseyLoaded.then(() => {
     const [blockStart, blockEnd] = blocks.slice(i, i + 2);
     blockStart.classList.add('ibvt-reset-mount');
     blockEnd.classList.add('ibvt-reset-mount');
-    const els = getEls(blockStart);
+    const els = getEls(blockStart).map(el => {
+      return el;
+    });
 
     parsedBlocks.push({
       id: i,
       HTMLElements: els
     });
   }
+  console.log({ parsedBlocks });
   if (parsedBlocks.length) {
     mount(Blocks, {
       target: blocks[0],

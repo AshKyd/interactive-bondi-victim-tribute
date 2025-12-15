@@ -5,7 +5,24 @@
   let rootNode = $state();
   onMount(() => {
     if (rootNode) {
-      Array.from(HTMLElements).forEach(el => rootNode.appendChild(el));
+      Array.from(HTMLElements).forEach(el => {
+        const className = el.getAttribute('class');
+        console.log({ className });
+        if (className === 'Quote') {
+          const bq = document.createElement('blockquote');
+          const [quote, ...attribution] = el.textContent.trim().split(' - ');
+          console.log(bq.textContent, quote, attribution);
+          bq.textContent = quote;
+          if (attribution.length) {
+            const attr = document.createElement('cite');
+            attr.textContent = '- ' + attribution.join(' - ');
+            bq.appendChild(attr);
+          }
+          rootNode.appendChild(bq);
+          return;
+        }
+        return rootNode.appendChild(el);
+      });
     }
   });
 </script>
@@ -52,15 +69,22 @@
         font-weight: 700;
         line-height: normal;
       }
-      .Quote {
-        color: #8e8e8e;
+      blockquote {
+        color: #2f6a5f;
         font-family: ABCSerif;
         font-size: 32px;
         font-style: italic;
         font-weight: 450;
         line-height: 125%; /* 40px */
-        p {
-          text-indent: 0;
+        margin-bottom: 34px;
+        cite {
+          color: #000;
+          font-family: ABCSans;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 177%;
+          display: block;
         }
       }
 

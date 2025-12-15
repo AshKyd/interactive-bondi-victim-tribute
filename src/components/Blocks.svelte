@@ -36,6 +36,7 @@
   });
 </script>
 
+<div class="hr"></div>
 <div class="blocks" bind:clientWidth={width} bind:this={rootNode}>
   {#if hasRun && columns && width >= 620}
     <div class="column column1">
@@ -64,6 +65,13 @@
 </div>
 
 <style lang="scss">
+  .hr::before {
+    content: '';
+    display: block;
+    margin: 48px auto;
+    width: 172px;
+    border-bottom: 1px solid #979797;
+  }
   .blocks {
     display: flex;
     gap: 50px;

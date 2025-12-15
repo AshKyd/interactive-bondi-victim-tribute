@@ -37,15 +37,6 @@
         text-decoration: underline;
       }
     }
-    @media (max-width: 619px) {
-      &--0::before {
-        content: '';
-        display: block;
-        margin: 48px auto;
-        width: 172px;
-        border-bottom: 1px solid #979797;
-      }
-    }
 
     &::after {
       content: '';

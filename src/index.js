@@ -24,6 +24,9 @@ function getEls(firstEl) {
 }
 
 whenOdysseyLoaded.then(() => {
+  const [masonryConfig] = selectMounts('masonry');
+  const masonryProps = masonryConfig && parse(getMountValue(masonryConfig));
+
   // PERSON BLOCKS
   const blocks = selectMounts('personblock');
   const parsedBlocks = [];
@@ -43,7 +46,7 @@ whenOdysseyLoaded.then(() => {
   if (parsedBlocks.length) {
     mount(Blocks, {
       target: blocks[0],
-      props: { blocks: parsedBlocks }
+      props: { blocks: parsedBlocks, masonryProps }
     });
   }
 

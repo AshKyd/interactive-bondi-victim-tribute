@@ -7,7 +7,7 @@
   import Block from './Block.svelte';
   import { onMount, untrack } from 'svelte';
 
-  let { blocks } = $props();
+  let { blocks, masonryProps } = $props();
   let blockSizes = $state([]);
   let width = $state(0);
   let rootNode = $state();
@@ -15,6 +15,7 @@
   let columns = $state(false);
   let hasRun = $state(false);
   $effect(() => {
+    console.log({ masonryProps });
     if (hasRun) {
       return;
     }
@@ -24,28 +25,12 @@
     }
     const col1 = [];
     const col2 = [];
-    let col1Height = 0;
-    let col2Height = 0;
     let i = 0;
     blocks.forEach((block, i) => {
-      const estimatedHeight = block.HTMLElements.reduce((height, element) => {
-        if (element.classList.contains('ImageEmbed')) {
-          return height + 5;
-        }
-        if (element.classList.contains('Quote')) {
-          return height + 2;
-        }
-        return height + 1;
-      }, 0);
-      console.log({ col1Height, col2Height, estimatedHeight, block });
-      if (col1Height <= col2Height) {
-        col1.push(block);
-        col1Height += estimatedHeight;
-        console.log('putting in col1');
-      } else {
+      if (i % 2 !== 0 || col1.length >= (masonryProps?.left || 100)) {
         col2.push(block);
-        col2Height += estimatedHeight;
-        console.log('putting in col2');
+      } else {
+        col1.push(block);
       }
     });
     columns = { col1, col2 };

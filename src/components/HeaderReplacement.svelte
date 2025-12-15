@@ -75,6 +75,6 @@
     }
   }
   .ibvt-header-replacement {
-    margin: 0 16px;
+    margin: 0 16px 50px;
   }
 </style>

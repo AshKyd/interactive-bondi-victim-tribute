@@ -81,6 +81,9 @@
     .ibvt-reset-mount:not(.u-full) {
       width: 100% !important;
     }
+    div[id*='masonryLEFT'] {
+      display: none;
+    }
     .ibvt-reset-mount {
       margin-top: 0 !important;
       margin-bottom: 0 !important;

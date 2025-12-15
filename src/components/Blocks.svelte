@@ -1,24 +1,86 @@
 <script>
-  import Masonry from 'svelte-bricks';
+  /**
+   * @file
+   * Custom masonry module. This is not performant, and confuses reading order.
+   * Let's never do this again.
+   */
   import Block from './Block.svelte';
+  import { onMount } from 'svelte';
 
   let { blocks } = $props();
+  let blockSizes = $state([]);
   let width = $state(0);
-  const gap = 50;
-  let columnWidth = $derived.by(() => (width < 620 ? width : width / 2 - gap / 2));
+  let rootNode = $state();
+  let columns = $derived.by(() => {
+    if (width < 620 || !blockSizes.length) {
+      return false;
+    }
+    const col1 = [];
+    const col2 = [];
+    let col1Height = 0;
+    let col2Height = 0;
+    let i = 0;
+    blocks.forEach((block, i) => {
+      if (col1Height <= col2Height) {
+        col1.push(block);
+        col1Height += blockSizes[i];
+      } else {
+        col2.push(block);
+        col2Height += blockSizes[i];
+      }
+    });
+    return { col1, col2 };
+  });
+
+  onMount(() => {
+    requestAnimationFrame(() => {
+      blockSizes = Array.from(rootNode.querySelectorAll('.ibvt-block')).map(el => {
+        return el.getBoundingClientRect().height;
+      });
+    });
+  });
 </script>
 
-<div class="blocks" bind:clientWidth={width}>
-  {#if width}
-    <Masonry items={blocks} minColWidth={columnWidth} {gap}>
-      {#snippet children({ item })}
-        <Block {...item} />
-      {/snippet}
-    </Masonry>
+<div class="blocks blocks--{!blockSizes.length ? 'loading' : 'ready'}" bind:clientWidth={width} bind:this={rootNode}>
+  {#if columns}
+    <div class="column column1">
+      {#if width}
+        {#each columns.col1 as item}
+          <Block {...item} />
+        {/each}
+      {/if}
+    </div>
+    <div class="column col2">
+      {#if width}
+        {#each columns.col2 as item}
+          <Block {...item} />
+        {/each}
+      {/if}
+    </div>
+  {:else}
+    <div class="column col-mobile">
+      {#if width}
+        {#each blocks as item}
+          <Block {...item} />
+        {/each}
+      {/if}
+    </div>
   {/if}
 </div>
 
 <style lang="scss">
+  .blocks {
+    display: flex;
+    gap: 50px;
+  }
+  .blocks--loading {
+    opacity: 0;
+  }
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
   :global {
     .ibvt-reset-mount:not(.u-full) {
       width: 100% !important;

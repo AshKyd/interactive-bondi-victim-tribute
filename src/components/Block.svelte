@@ -30,7 +30,7 @@
 <style lang="scss">
   .ibvt-block {
     margin: 0 16px;
-    a:not(.bespoke) {
+    :global(a:not(.bespoke)) {
       color: #3f7ab8;
       &:hover,
       &:focus-visible {

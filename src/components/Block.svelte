@@ -49,7 +49,7 @@
       border-bottom: 1px solid #979797;
     }
     :global {
-      * {
+      & > * {
         margin: 0;
         margin-bottom: 16px;
       }
@@ -68,6 +68,7 @@
         font-style: normal;
         font-weight: 700;
         line-height: normal;
+        margin-bottom: 10px;
       }
       blockquote {
         color: #2f6a5f;
@@ -76,7 +77,9 @@
         font-style: italic;
         font-weight: 450;
         line-height: 125%; /* 40px */
-        margin-bottom: 34px;
+        @media (min-width: 620px) {
+          margin-bottom: 34px;
+        }
         cite {
           color: #000;
           font-family: ABCSans;
@@ -85,6 +88,7 @@
           font-weight: 600;
           line-height: 177%;
           display: block;
+          margin: 0;
         }
       }
 

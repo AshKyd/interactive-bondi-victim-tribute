@@ -71,7 +71,7 @@
       blockquote {
         color: #2f6a5f;
         font-family: ABCSerif;
-        font-size: 32px;
+        font-size: 28px;
         font-style: italic;
         font-weight: 450;
         line-height: 125%; /* 40px */

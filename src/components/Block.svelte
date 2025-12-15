@@ -10,17 +10,20 @@
   });
 </script>
 
-<div class="ibvt-block" bind:this={rootNode}></div>
+<div class="ibvt-block ibvt-block--{id}" bind:this={rootNode}></div>
 
 <style lang="scss">
-  :global{
-      .ibvt-reset-mount{
-        margin-top:0 !important;
-        margin-bottom:0 !important;
-      }
-  }
   .ibvt-block {
     margin: 0 16px;
+    @media (max-width: 699px) {
+      &--0::before {
+        content: '';
+        display: block;
+        margin: 48px auto;
+        width: 172px;
+        border-bottom: 1px solid #979797;
+      }
+    }
     &::after {
       content: '';
       display: block;
@@ -33,17 +36,17 @@
         margin: 0;
         margin-bottom: 16px;
       }
-      .ImageEmbed.u-pull{
-        width:100%;
+      .ImageEmbed.u-pull {
+        width: 100%;
       }
       img {
         border-radius: 12px;
-        width:100%;
-        height:auto;
+        width: 100%;
+        height: auto;
       }
       h3 {
         color: #000;
-        font-family: ABCSans, sans-serif;
+        font-family: 'ABCSans Condensed', sans-serif;
         font-size: 48px;
         font-style: normal;
         font-weight: 700;

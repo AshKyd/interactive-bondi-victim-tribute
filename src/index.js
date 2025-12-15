@@ -1,6 +1,6 @@
 import { whenOdysseyLoaded } from '@abcnews/env-utils';
 import { getMountValue, isMount, selectMounts } from '@abcnews/mount-utils';
-import Block from './components/Block.svelte';
+import Blocks from './components/Blocks.svelte';
 import HeaderReplacement from './components/HeaderReplacement.svelte';
 import { parse } from '@abcnews/alternating-case-to-object';
 import { mount } from 'svelte';
@@ -23,19 +23,23 @@ function getEls(firstEl) {
 whenOdysseyLoaded.then(() => {
   // PERSON BLOCKS
   const blocks = selectMounts('personblock');
+  const parsedBlocks = [];
   for (let i = 0; i < blocks.length; i += 2) {
     const [blockStart,blockEnd] = blocks.slice(i, i + 2);
     blockStart.classList.add('ibvt-reset-mount')
     blockEnd.classList.add('ibvt-reset-mount')
     const els = getEls(blockStart);
 
-    mount(Block, {
-      target: blockStart,
-      props: {
+    parsedBlocks.push({
         id: i,
         HTMLElements: els,
-      }
     });
+  }
+  if(parsedBlocks.length){
+    mount(Blocks,{
+      target: blocks[0],
+      props:{blocks: parsedBlocks}
+    })
   }
 
   // HEADER REPLACEMENT

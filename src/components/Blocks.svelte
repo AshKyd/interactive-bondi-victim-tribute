@@ -5,15 +5,22 @@
    * Let's never do this again.
    */
   import Block from './Block.svelte';
-  import { onMount } from 'svelte';
+  import { onMount, untrack } from 'svelte';
 
   let { blocks } = $props();
   let blockSizes = $state([]);
   let width = $state(0);
   let rootNode = $state();
-  let columns = $derived.by(() => {
-    if (width < 620 || !blockSizes.length) {
-      return false;
+
+  let columns = $state(false);
+  let hasRun = $state(false);
+  $effect(() => {
+    if (hasRun) {
+      return;
+    }
+    hasRun = true;
+    if (width < 620) {
+      columns = false;
     }
     const col1 = [];
     const col2 = [];
@@ -21,28 +28,32 @@
     let col2Height = 0;
     let i = 0;
     blocks.forEach((block, i) => {
+      const estimatedHeight = block.HTMLElements.reduce((height, element) => {
+        if (element.classList.contains('ImageEmbed')) {
+          return height + 5;
+        }
+        if (element.classList.contains('Quote')) {
+          return height + 2;
+        }
+        return height + 1;
+      }, 0);
+      console.log({ col1Height, col2Height, estimatedHeight, block });
       if (col1Height <= col2Height) {
         col1.push(block);
-        col1Height += blockSizes[i];
+        col1Height += estimatedHeight;
+        console.log('putting in col1');
       } else {
         col2.push(block);
-        col2Height += blockSizes[i];
+        col2Height += estimatedHeight;
+        console.log('putting in col2');
       }
     });
-    return { col1, col2 };
-  });
-
-  onMount(() => {
-    requestAnimationFrame(() => {
-      blockSizes = Array.from(rootNode.querySelectorAll('.ibvt-block')).map(el => {
-        return el.getBoundingClientRect().height;
-      });
-    });
+    columns = { col1, col2 };
   });
 </script>
 
-<div class="blocks blocks--{!blockSizes.length ? 'loading' : 'ready'}" bind:clientWidth={width} bind:this={rootNode}>
-  {#if columns}
+<div class="blocks" bind:clientWidth={width} bind:this={rootNode}>
+  {#if hasRun && columns && width >= 620}
     <div class="column column1">
       {#if width}
         {#each columns.col1 as item}
@@ -72,9 +83,6 @@
   .blocks {
     display: flex;
     gap: 50px;
-  }
-  .blocks--loading {
-    opacity: 0;
   }
   .column {
     display: flex;

@@ -75,6 +75,7 @@
         font-weight: 700;
         line-height: normal;
         margin-bottom: 10px;
+        text-transform: uppercase;
       }
       blockquote {
         color: #2f6a5f;

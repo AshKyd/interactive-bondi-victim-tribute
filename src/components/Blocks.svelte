@@ -21,9 +21,11 @@
 <style lang="scss">
   :global {
     .ibvt-reset-mount:not(.u-full) {
+      width: 100% !important;
+    }
+    .ibvt-reset-mount {
       margin-top: 0 !important;
       margin-bottom: 0 !important;
-      width: 100% !important;
     }
   }
   .blocks {

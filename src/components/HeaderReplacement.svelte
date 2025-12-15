@@ -62,7 +62,7 @@
       }
       .Header-byline {
         display: block;
-        &,
+        margin: 50px 0 0 !important;
         & > * {
           margin: 0 !important;
         }
@@ -75,6 +75,6 @@
     }
   }
   .ibvt-header-replacement {
-    margin: 0 16px 50px;
+    margin: 0 16px 0;
   }
 </style>

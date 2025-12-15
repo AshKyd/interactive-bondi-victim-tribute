@@ -27,6 +27,17 @@
       margin-top: 0 !important;
       margin-bottom: 0 !important;
     }
+
+    // BUG: how do we turn off drop caps?
+    [class*='u-richtext'] > .u-dropcap::first-letter {
+      float: none;
+      font-size: inherit;
+      font-weight: inherit;
+      padding: none;
+      line-height: inherit;
+      font-family: inherit;
+      margin: 0;
+    }
   }
   .blocks {
     margin-bottom: 50px;

@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import SVGLoader from './SVGLoader.svelte';
 
   let { fullwidth = false, mobileratio, desktopratio, version } = $props();
@@ -15,6 +16,12 @@
     () =>
       `https://www.abc.net.au/res/sites/news-projects/interactive-bondi-victim-tribute/assets/header-${isMobile ? 'mobile' : 'desktop'}-${fullwidth ? 'full' : 'content'}-v${version || '0'}.svg`
   );
+  onMount(() => {
+    const isNewsApp = String(window.location).includes('newsapp');
+    if (isNewsApp) {
+      document.body.classList.add('ibvt-newsapp');
+    }
+  });
 </script>
 
 <div class="measure" bind:clientWidth={width}></div>
@@ -34,6 +41,9 @@
     height: 0;
   }
   :global {
+    body.ibvt-newsapp .Header-byline {
+      display: none;
+    }
     .Header {
       margin: 0 !important;
     }

@@ -9,7 +9,7 @@
         const className = el.getAttribute('class');
         if (className === 'Quote') {
           const bq = document.createElement('blockquote');
-          const [quote, ...attribution] = el.textContent.trim().split(' - ');
+          const [quote, ...attribution] = el.textContent.trim().replace(/ — /g, ' - ').split(' - ');
           bq.textContent = quote;
           if (attribution.length) {
             const attr = document.createElement('cite');
